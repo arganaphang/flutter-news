@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:hello/dummy.dart';
+import 'package:hello/entity/news.dart';
 import 'package:hello/widget/news_card.dart';
 
-class TodayScreen extends StatelessWidget {
-  const TodayScreen({super.key});
+class ListScreen extends StatelessWidget {
+  final List<News> lists;
+  const ListScreen({
+    super.key,
+    required this.lists,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -11,12 +15,12 @@ class TodayScreen extends StatelessWidget {
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (ctx, idx) {
-        return NewsCard(news: news);
+        return NewsCard(news: lists[idx]);
       },
       separatorBuilder: (ctx, idx) {
         return const SizedBox(height: 18);
       },
-      itemCount: 100,
+      itemCount: lists.length,
     );
   }
 }
